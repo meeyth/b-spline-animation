@@ -7,7 +7,7 @@ from matplotlib.animation import FuncAnimation
 
 def de_boor_basis(i, k, t, knots):
     if k == 0:
-        return 1.0 if knots[i] <= t < knots[i+1] else 0.0
+        return 1.0 if knots[i] <= t < knots[i + 1] else 0.0
     denom1 = knots[i + k] - knots[i]
     denom2 = knots[i + k + 1] - knots[i + 1]
 
@@ -40,7 +40,10 @@ control_points = np.array([
     [2, 3],
     [4, 3.5],
     [5, 2],
-    [6, 0]
+    [6, 0],
+    [7, 2],
+    [8, 4],
+    [9, 4.5],
 ])
 n = len(control_points)
 degree = 3
@@ -75,7 +78,7 @@ basis_lines = [basis_ax.plot([], [], color=colors[i], label=f"N{i},{degree}")[
 curve_ax.legend()
 basis_ax.set_xlim(knots[degree], knots[-degree-1])
 basis_ax.set_ylim(0, 1.1)
-curve_ax.set_xlim(-0.5, 6.5)
+curve_ax.set_xlim(-0.5, 9.5)
 curve_ax.set_ylim(-1, 5)
 basis_ax.grid(True)
 curve_ax.grid(True)
