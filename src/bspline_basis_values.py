@@ -23,7 +23,7 @@ def de_boor_cox(i, k, x, knot):
 
     res = left + right
 
-    print(f"B({i},{k}) = {res:.4f}")
+    print(f"N({i},{k}) = {res:.4f}")
 
     return res
 
@@ -46,7 +46,7 @@ def compute_b_spline_basis(x_values, knot, k):
 
             basis_functions[i].append(value)
 
-            print(f"\tB({i},{k}) ({x}) = {value:.4f}")
+            print(f"\tN({i},{k}) ({x}) = {value:.4f}")
 
         print()
         print("----------------------------------------------------------")
@@ -59,7 +59,8 @@ if __name__ == "__main__":
     knot = [0, 0.5, 1, 1.5, 2, 2.5, 3, 3.5, 4, 4.5, 5, 5.5, 6]  # Knot vector
 
     k = 4  # Degree of the B-spline
-    x_values = [1.8, 1.9, 2.0, 2.1, 2.2,]
+    x_values = [1.8, 1.9, 2.0, 2.1, 2.2, 2.3,
+                2.4, 2.5, 2.6, 2.7, 2.8, 2.9, 3.0]
 
     # Compute basis functions
     basis_functions = compute_b_spline_basis(x_values, knot, k)
