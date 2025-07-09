@@ -2,8 +2,8 @@ import numpy as np
 import matplotlib.pyplot as plt
 from matplotlib.animation import FuncAnimation
 
-# B-spline basis function (recursive Cox-de Boor)
 
+# B-spline basis function (recursive Cox-de Boor)
 
 def de_boor_basis(i, k, t, knots):
     if k == 0:
@@ -30,6 +30,7 @@ def bspline_point(t, control_points, degree, knots):
     for i in range(n):
         b = de_boor_basis(i, degree, t, knots)
         point += b * control_points[i]
+    # print(point)
     return point
 
 
@@ -40,13 +41,13 @@ control_points = np.array([
     [2, 3],
     [4, 3.5],
     [5, 2],
-    [6, 0],
-    [7, 2],
-    [8, 4],
-    [9, 4.5],
+    # [6, 0],
+    # [7, 2],
+    # [8, 4],
+    # [9, 4.5],
 ])
 n = len(control_points)
-degree = 3
+degree = 3  # means each piecewise curve (each segment) has an order of 4
 
 # Clamped knot vector
 knots = np.concatenate((
@@ -54,6 +55,8 @@ knots = np.concatenate((
     np.linspace(0, 1, n - degree + 1),
     np.ones(degree)
 ))
+
+print(knots, n-degree+2)
 
 # t values for animation
 t_vals = np.linspace(knots[degree], knots[-degree-1], 200)
