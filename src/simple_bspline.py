@@ -54,6 +54,8 @@ control_points = np.array([
 
 n = len(control_points)
 k = 4  # Cubic B-spline; (k - 1)
+degree = k - 1  # Your k is order, so degree = k - 1
+
 
 # Clamped knot vector
 # knots = np.array([0, 0.5, 1, 1.5, 2, 2.5, 3, 3.5, 4, 4.5, 5, 5.5, 6])
@@ -77,12 +79,8 @@ for t in t_vals:
     print(f"t = {t:.3f} --> point = ({point[0]:.4f}, {point[1]:.4f})")
 
 
-# Reuse existing variables from your code:
-# control_points, knots, k (degree), t_vals, bspline_point()
-
-n = len(control_points)
-degree = k - 1  # Your k is order, so degree = k - 1
-
+# ------------------------------------------------------------------------------
+#  ANIMATION SNIPPET
 # Setup plot
 fig, ax = plt.subplots(1, 2, figsize=(12, 5))
 curve_ax = ax[0]
