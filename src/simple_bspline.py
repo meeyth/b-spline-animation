@@ -74,9 +74,9 @@ t_vals = np.linspace(knots[k-1], knots[-k], 50)  # 20 points
 # print(t_vals)
 
 # Compute and print curve points
-for t in t_vals:
-    point = bspline_point(t, control_points, k, knots)
-    print(f"t = {t:.3f} --> point = ({point[0]:.4f}, {point[1]:.4f})")
+# for t in t_vals:
+#     point = bspline_point(t, control_points, k, knots)
+#     print(f"t = {t:.3f} --> point = ({point[0]:.4f}, {point[1]:.4f})")
 
 
 # ------------------------------------------------------------------------------

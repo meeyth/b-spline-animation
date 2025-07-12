@@ -41,10 +41,10 @@ control_points = np.array([
     [2, 3],
     [4, 3.5],
     [5, 2],
-    # [6, 0],
-    # [7, 2],
-    # [8, 4],
-    # [9, 4.5],
+    [6, 0],
+    [7, 2],
+    [8, 4],
+    [9, 4.5],
 ])
 n = len(control_points)
 degree = 3  # means each piecewise curve (each segment) has an order of 4
