@@ -5,7 +5,7 @@ import numpy as np
 # B-spline basis function (recursive Cox-de Boor)
 
 
-def de_boor_cox(i, k, x, knot):
+def de_boor_cox(i, k, x, knots):
     """
     Recursively computes the B-spline basis function B(i, k) using the De Boor-Cox formula.
     Parameters:
@@ -17,28 +17,28 @@ def de_boor_cox(i, k, x, knot):
     """
     # Base case: B(i,1)
     if k == 1:
-        return 1.0 if (knot[i] <= x < knot[i + 1]) else 0.0
+        return 1.0 if (knots[i] <= x < knots[i + 1]) else 0.0
 
     # Compute first term (left fraction)
-    left_denom = knot[i + k - 1] - knot[i]
-    left = ((x - knot[i]) / left_denom) * de_boor_cox(i,
-                                                      k - 1, x, knot) if left_denom != 0 else 0
+    left_denom = knots[i + k - 1] - knots[i]
+    left = ((x - knots[i]) / left_denom) * de_boor_cox(i,
+                                                       k - 1, x, knots) if left_denom != 0 else 0
 
     # Compute second term (right fraction)
-    right_denom = knot[i + k] - knot[i + 1]
-    right = ((knot[i + k] - x) / right_denom) * \
-        de_boor_cox(i + 1, k - 1, x, knot) if right_denom != 0 else 0
+    right_denom = knots[i + k] - knots[i + 1]
+    right = ((knots[i + k] - x) / right_denom) * \
+        de_boor_cox(i + 1, k - 1, x, knots) if right_denom != 0 else 0
 
     res = left + right
     # print(f"N({i},{k}) = {res:.4f}")
     return res
 
 
-def bspline_point(t, control_points, degree, knots):
+def bspline_point(t, control_points, k, knots):
     n = len(control_points)
     point = np.zeros(2)
     for i in range(n):
-        b = de_boor_cox(i, degree, t, knots)
+        b = de_boor_cox(i, k, t, knots)
         point += b * control_points[i]
     return point
 
